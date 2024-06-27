@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Movies and Shows</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+<div class="header">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo">
+    <form method="GET" action="/" class="search-bar">
+        <input type="search" placeholder="Search" class="bg-gray-700 p-2 rounded">
+        <button class="bg-red-600 text-white p-2 rounded hover:bg-red-500">Search</button>
+    </form>
+    <div class="nav-buttons">
+        <button class="my-list-btn">My List</button>
+        <button class="sign-out-btn",action="logout">Sign Out</button>
+    </div>
+</div>
+
+<div class="main-content">
+    <div class="category">
+        <h2>Trending Now</h2>
+        <div class="movies-shows">
+            {% for movie in movies %}
+            <div class="movie-show">
+                <a href="movie={{movie.movie_name}}">
+                    <img src="{{ movie.img_card.url }}" alt="{{ movie.movie_name }}">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="category">
+        <h2>Popular on Netflix</h2>
+        <div class="movies-shows">
+            {% for movie in movies reversed %}
+            <div class="movie-show">
+                <a href="/">
+                    <img src="{{movie.img_card.url}}" alt="Show 1">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <p>Questions? Call 1-800-000-0000</p>
+    <p>&copy; 2024 Netflix, Inc.</p>
+</div>
+
+</body>
+</html>
